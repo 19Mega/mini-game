@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://deapuweaberl4"]
+
+[ext_resource type="Script" path="res://characters/player_scene.gd" id="1_2kubt"]
+[ext_resource type="Texture2D" uid="uid://b4kjd0tdgukmb" path="res://assets/player-0.png" id="1_7n6vn"]
+[ext_resource type="Texture2D" uid="uid://cvox5bu1ptx3e" path="res://assets/player-1.png" id="2_c55mm"]
+[ext_resource type="Script" path="res://characters/player_shooter.gd" id="4_hlik8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6d06s"]
+size = Vector2(10, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kelo1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7n6vn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_c55mm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="player_scene" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_2kubt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_6d06s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_kelo1")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0789668
+
+[node name="shooter" type="Node2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+z_index = 5
+position = Vector2(7, -1)
+script = ExtResource("4_hlik8")
